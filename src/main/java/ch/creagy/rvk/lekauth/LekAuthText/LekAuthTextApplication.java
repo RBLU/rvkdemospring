@@ -1,0 +1,13 @@
+package ch.creagy.rvk.lekauth.LekAuthText;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class LekAuthTextApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(LekAuthTextApplication.class, args);
+	}
+
+}
