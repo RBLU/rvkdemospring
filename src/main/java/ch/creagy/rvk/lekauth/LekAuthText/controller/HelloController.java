@@ -44,6 +44,7 @@ public class HelloController {
     @PreAuthorize("hasAuthority('APPROLE_F_Admin')")
     public String Admin(HttpServletRequest request) {
         Jwt jwt = (Jwt)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        // instead of getting the data from the DB we just return hardcoded values
         return "{\"givenName\": \"Hansli\", \"surname\": \"Huber\",\"userPrincipalName\": \"hansli@hans.com\",\"id\": \"666\"}";
     }
 
@@ -112,7 +113,7 @@ public class HelloController {
                     .bodyToMono(String.class)
                     .block();
             LOGGER.info("Response from Graph: {}", body);
-            return "Graph response " + (null != body ? "success."+body.toString() : "failed.");
+            return null != body ? body.toString() : "failed.";
         } else {
             return "Graph response failed.";
         }

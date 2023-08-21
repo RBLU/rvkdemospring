@@ -30,7 +30,7 @@ public class MySecurityFilterChain {
                 .build();
     }
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
         corsConfig.setMaxAge(3600L);
@@ -43,15 +43,13 @@ public class MySecurityFilterChain {
 
         source.registerCorsConfiguration("/**", corsConfig);
 
-        http.apply(AadResourceServerHttpSecurityConfigurer.aadResourceServer())
+        httpSecurity.apply(AadResourceServerHttpSecurityConfigurer.aadResourceServer())
                 .and()
-                .authorizeHttpRequests()
-                .anyRequest().authenticated();
-        http
+                .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
                 .csrf((csrf) -> csrf.disable())
                 .cors((cors) -> cors.configurationSource(source));
 
-        return http.build();
+        return httpSecurity.build();
     }
 
 }
