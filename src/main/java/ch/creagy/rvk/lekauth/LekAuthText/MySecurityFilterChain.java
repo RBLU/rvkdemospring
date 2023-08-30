@@ -32,7 +32,7 @@ public class MySecurityFilterChain {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:4200", "https://wonderful-river-047398603-preview.westeurope.3.azurestaticapps.net"));
         corsConfig.setMaxAge(3600L);
         corsConfig.addAllowedMethod("*");
         corsConfig.addAllowedHeader("*");
